@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sopa de Letras - Filosofía y Psicología</title>
+<style>
+  body{
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  h1{color:#2d3436}
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(15, 35px);
+    grid-template-rows: repeat(15, 35px);
+    gap: 2px;
+    margin: 20px 0;
+  }
+  .cell{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #dcdde1;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .cell.selected{ background: #74b9ff; color:#fff }
+  .cell.found{ background: #55efc4; color:#000 }
+  .word-list{ margin-top:20px; }
+  .word-list li{ list-style:none; padding:4px 0; }
+  .found-word{ text-decoration: line-through; color: green }
+</style>
+</head>
+<body>
+  <h1>Sopa de Letras</h1>
+  <p>Encuentra los siguientes conceptos:</p>
+  <ul class="word-list" id="wordList">
+    <li>HIPÓCRATES</li>
+    <li>SÓCRATES</li>
+    <li>PLATÓN</li>
+    <li>ARISTÓTELES</li>
+    <li>DESCARTES</li>
+    <li>EMPIRISMO</li>
+    <li>CONDUCTISMO</li>
+    <li>PSICOANÁLISIS</li>
+    <li>HUMANISMO</li>
+    <li>COGNITIVA</li>
+  </ul>
+  <div class="grid" id="grid"></div>
+
+<script>
+const words = ["HIPOCRATES","SOCRATES","PLATON","ARISTOTELES","DESCARTES","EMPIRISMO","CONDUCTISMO","PSICOANALISIS","HUMANISMO","COGNITIVA"];
+const size = 15;
+const gridEl = document.getElementById("grid");
+const wordListEl = document.getElementById("wordList").children;
+
+// Crear matriz vacía
+let grid = Array.from({length:size}, ()=>Array(size).fill(""));
+
+// Normalizar texto (sin tildes)
+function normalize(str){
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function placeWord(word){
+  word = normalize(word);
+  const dirs = [[1,0],[0,1],[1,1],[1,-1]]; // derecha, abajo, diagonal
+  let placed=false;
+  while(!placed){
+    const dir = dirs[Math.floor(Math.random()*dirs.length)];
+    let row = Math.floor(Math.random()*size);
+    let col = Math.floor(Math.random()*size);
+    if(row+dir[0]*word.length >= size || row+dir[0]*word.length < 0) continue;
+    if(col+dir[1]*word.length >= size || col+dir[1]*word.length < 0) continue;
+    let fits=true;
+    for(let i=0;i<word.length;i++){
+      let r=row+dir[0]*i, c=col+dir[1]*i;
+      if(grid[r][c]!="" && grid[r][c]!=word[i]){ fits=false; break;}
+    }
+    if(fits){
+      for(let i=0;i<word.length;i++){
+        let r=row+dir[0]*i, c=col+dir[1]*i;
+        grid[r][c]=word[i];
+      }
+      placed=true;
+    }
+  }
+}
+words.forEach(placeWord);
+
+// Rellenar con letras aleatorias
+const alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+for(let r=0;r<size;r++){
+  for(let c=0;c<size;c++){
+    if(grid[r][c]=="") grid[r][c]=alphabet[Math.floor(Math.random()*alphabet.length)];
+  }
+}
+
+// Renderizar
+let cells = [];
+for(let r=0;r<size;r++){
+  for(let c=0;c<size;c++){
+    const div=document.createElement("div");
+    div.className="cell";
+    div.dataset.row=r;
+    div.dataset.col=c;
+    div.textContent=grid[r][c];
+    gridEl.appendChild(div);
+    cells.push(div);
+  }
+}
+
+// Lógica selección
+let selected=[];
+function checkSelection(){
+  let text = selected.map(cell=>cell.textContent).join("");
+  let rev = selected.map(cell=>cell.textContent).reverse().join("");
+  let normText = normalize(text);
+  let normRev = normalize(rev);
+  
+  for(let i=0;i<words.length;i++){
+    if(normText===words[i] || normRev===words[i]){
+      selected.forEach(cell=>cell.classList.add("found"));
+      wordListEl[i].classList.add("found-word");
+    }
+  }
+  selected.forEach(cell=>cell.classList.remove("selected"));
+  selected=[];
+}
+
+cells.forEach(cell=>{
+  cell.addEventListener("click", ()=>{
+    if(cell.classList.contains("found")) return;
+    if(cell.classList.contains("selected")){
+      checkSelection();
+    } else {
+      cell.classList.add("selected");
+      selected.push(cell);
+    }
+  });
+});
+</script>
+</body>
+</html>

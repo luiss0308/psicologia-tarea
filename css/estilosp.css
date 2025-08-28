@@ -1,0 +1,271 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+   
+  background-color: #75d0eb00;
+    color: #2c2c2c;
+}
+body {
+     font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    padding: 20px 40px;
+}
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    border-radius: 12px;
+    padding: 30px 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    font-weight: 700;
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    color: #003366;
+    background: rgba(204, 230, 255, 0.8); 
+    padding: 20px;
+    border-radius: 12px;
+}
+.radio-group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+input[type="radio"] {
+    display: none;
+}
+label{
+    font-weight: 600;
+    font-size: 1.15rem;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: 2px solid #99c2ff;
+    background: rgba(230, 240, 255, 0.85); 
+    color: #003366;
+    min-width: 130px;
+    text-align: center;
+}
+label:hover {
+    background-color: rgba(204, 230, 255, 0.85);
+}
+input[type="radio"]:checked + label {
+    background-color: #003366;
+    color: #ffffff;
+    border-color: #3366cc;
+}
+section.list-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    background: rgba(249, 249, 249, 0.8); 
+    border-radius: 12px;
+    padding: 20px 25px;
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+.grade-group {
+    margin-bottom: 2rem;
+}
+.grade-group:last-child {
+    margin-bottom: 0;
+}
+  
+    @media (min-width: 992px) {
+      #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 265px;
+      }
+      #main-content {
+        margin-left: 265px; 
+      }
+    }
+.grade-title {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #336699;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+ul {
+    margin: 0 0 0 1.3rem;
+    padding: 0;
+}
+ul li {
+    margin-bottom: 8px;
+}
+section.list-container::-webkit-scrollbar {
+    width: 8px;
+}
+section.list-container::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 6px;
+}
+section.list-container::-webkit-scrollbar-thumb {
+    background: #b0c4de;
+    border-radius: 6px;
+}
+#contenedor {
+    width: 100%;
+    padding: 60px;
+    background-color: rgba(255, 255, 255, 0.788);
+    box-sizing: border-box;
+    border-radius: 12px;
+    position: relative;
+}
+
+#redes img {
+  background-color: rgba(133, 184, 243, 0);
+  padding: 8px;
+  border-radius: 45%;        
+  border: 2px solid #ccc;    
+}
+
+
+
+   img  {
+    
+    margin: 10px auto;
+    width: 130px;
+    height: 130px;} 
+
+#final {
+    color: #003366;
+    background-color:rgba(30, 125, 214, 0.13);
+    text-align: center;
+    padding: 20px;
+    margin-top: 500px;
+    border-radius: 8px;
+}
+@media (max-width: 900px) {
+    body {
+        padding: 15px 20px;
+    }
+    main {
+        padding: 20px 30px;
+    }
+    .radio-group {
+        gap: 20px;
+    }
+    label {
+        min-width: 110px;
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    section.list-container {
+        font-size: 1.1rem;
+        padding: 15px 20px;
+    }
+    .grade-title {
+        font-size: 1.4rem;
+    }
+}
+@media (max-width: 480px) {
+    main {
+        padding: 15px 20px;
+    }
+    .radio-group {
+        gap: 15px;
+    }
+    label {
+        min-width: 90px;
+        padding: 8px 16px;
+        font-size: 0.95rem;
+    }
+    section.list-container {
+        font-size: 1rem;
+        padding: 12px 16px;
+    }
+    .grade-title {
+        font-size: 1.2rem;
+    }
+}
+
+
+#opciones{
+   background-color: rgba(204, 230, 255, 0.8);
+
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 15px;
+    font-weight: lighter;
+    font-size: 1.1em;
+    border-radius: 8px;
+}
+label {
+    font-size: 1.2rem; 
+    font-weight: bold; 
+}
+
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+input[type="text"] {
+    font-size: 1.2rem; 
+    padding: 10px; 
+}
+
+button[type="button"],
+input[type="submit"] {
+    font-size: 1.2rem; 
+    padding: 10px 10px; 
+    cursor: pointer; 
+}
+
+
+#contenido img{
+   
+    text-align: right;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;  
+ 
+}
+#contenido p{
+    color: #003366;
+    
+    text-align: left;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+#preg{
+    color: #003366;
+    background-color:rgb(156, 201, 243);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+

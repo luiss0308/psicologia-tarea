@@ -1,0 +1,170 @@
+:root {
+  --c-antig: #7da0f3;
+  --c-media: #5ac8a6;
+  --c-moderna: #c38fff;
+  --c-ilus: #7ec8ff;
+  --c-rom: #ffb480;
+  --c-exist: #ff7aa2;
+  --c-vol: #b0d17b;
+  --c-psico: #9ad1ff;
+  --c-behav: #ffc36b;
+  --c-gestalt: #a6e3a1;
+  --c-psicoana: #f6a6c1;
+  --c-human: #8cd3ff;
+  --c-cog: #d1b3ff;
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --line: #c9d4ff;
+  --text: #20242a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+  color: var(--text);
+}
+
+/* HEADER */
+header {
+  padding: 28px 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 6px;
+  font-size: clamp(22px, 3.5vw, 34px);
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* TIMELINE */
+.timeline {
+  position: relative;
+  padding: 30px 0 60px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--line);
+  transform: translateX(-50%);
+  border-radius: 4px;
+}
+
+.item {
+  position: relative;
+  width: calc(50% - 24px);
+  margin: 22px 0;
+  padding: 16px 16px 14px;
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(18, 26, 39, .08);
+}
+
+.item.left { margin-right: auto }
+.item.right { margin-left: auto }
+
+.item::after {
+  content: "";
+  position: absolute;
+  top: 22px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border: 3px solid var(--line);
+  border-radius: 50%;
+}
+
+.item.left::after { right: -34px }
+.item.right::after { left: -34px }
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  color: #0a0a0a;
+  background: #e9eefc;
+}
+
+.fecha {
+  font-weight: 700;
+  color: #2b4be1;
+  margin-bottom: 4px;
+}
+
+h3 {
+  margin: 4px 0 6px;
+  font-size: 18px;
+}
+
+p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Colores de badges */
+.antig .badge { background: var(--c-antig) }
+.media .badge { background: var(--c-media) }
+.moderna .badge { background: var(--c-moderna) }
+.ilustracion .badge { background: var(--c-ilus) }
+.romanticismo .badge { background: var(--c-rom) }
+.existencialismo .badge { background: var(--c-exist) }
+.voluntarismo .badge { background: var(--c-vol) }
+.psico .badge { background: var(--c-psico) }
+.behav .badge { background: var(--c-behav) }
+.gestalt .badge { background: var(--c-gestalt) }
+.psicoanalisis .badge { background: var(--c-psicoana) }
+.humanista .badge { background: var(--c-human) }
+.cognitiva .badge { background: var(--c-cog) }
+
+/* Responsive */
+@media (max-width:900px) {
+  .item, .item.left, .item.right { width: 100% }
+  .timeline::before { left: 18px; transform: none }
+  .item { padding-left: 18px }
+  .item::after { left: 8px; right: auto }
+}
+
+/* SECCIÓN JUEGO */
+.juego {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* BOTÓN */
+button {
+  background-color: #66ccff;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background-color: #33bbff;
+  transform: scale(1.05);
+}
+form{
+    text-align: center;
+}
